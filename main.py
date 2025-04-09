@@ -1,5 +1,3 @@
-# main.py
-
 from feedback.entry import collect_feedback
 from feedback.score_calc import calculate_average
 from feedback.summary import summarize_feedback
@@ -10,12 +8,15 @@ def main():
         student_name = input("Enter student name (or type 'done' to finish): ")
         if student_name.lower() == 'done':
             break
+
         try:
             score = float(input("Enter feedback score (0-10): "))
         except ValueError:
-            print("Invalid score! Please enter a number.")
+            print("⚠️ Invalid score! Please enter a number between 0 and 10.")
             continue
-        feedback = collect_feedback(student_name, score)
+
+        comment = input("Enter feedback comment: ")
+        feedback = collect_feedback(student_name, score, comment)
         feedback_list.append(feedback)
 
     print("\n📋 Feedback Summary:")
